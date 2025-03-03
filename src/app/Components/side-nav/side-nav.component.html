@@ -1,0 +1,39 @@
+<div class="side-nav" [ngClass]="{'collapsed': collapsed}">
+    <!-- Logo Section -->
+    <div class="logo-container">
+        <img src="assets/images/logo.png" alt="Grocery Store Management System">
+        <div class="logo-text">
+          <span>Grocery Store</span>
+          <span>Management System</span>
+        </div>
+    </div>
+      
+
+    <!-- Nav Items Container -->
+    <div class="nav-content">
+        <!-- First Section: Main Navigation -->
+        <ul class="nav-items">
+            <li *ngFor="let item of navItems.slice(0, 6)" 
+                [routerLink]="item.route ? item.route : null"
+                [class.disabled]="!item.route"
+                routerLinkActive="active">
+                <i class="material-icons">{{item.icon}}</i>
+                <span *ngIf="!collapsed">{{item.label}}</span>
+            </li>
+        </ul>
+
+        <!-- Separator before Settings -->
+        <div class="separator"></div>
+
+        <!-- Second Section: Settings & Others -->
+        <ul class="nav-items">
+            <li *ngFor="let item of navItems.slice(6)" 
+                [routerLink]="item.route ? item.route : null"
+                [class.disabled]="!item.route"
+                routerLinkActive="active">
+                <i class="material-icons">{{item.icon}}</i>
+                <span *ngIf="!collapsed">{{item.label}}</span>
+            </li>
+        </ul>
+    </div>
+</div>
