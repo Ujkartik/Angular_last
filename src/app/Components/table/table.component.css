@@ -1,0 +1,9 @@
+.filters { margin-bottom: 10px; }
+    .filters button { margin-right: 5px; }
+    .active { font-weight: bold; }
+    .sticky-col { position: sticky; left: 0; background: white; z-index: 1; }
+    .status { padding: 4px 8px; border-radius: 4px; }
+    .completed { background: lightgreen; }
+    .in-transit { background: lightblue; }
+    .pending { background: orange; }
+    .failed { background: red; color: white; }

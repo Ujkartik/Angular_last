@@ -1,0 +1,22 @@
+<div class="filters">
+    <button *ngFor="let filter of filters" mat-button (click)="applyFilter(filter)" [class.active]="selectedFilter === filter">
+      {{ filter }}
+    </button>
+  </div>
+  <table mat-table [dataSource]="filteredData" class="mat-elevation-z8">
+    <ng-container *ngFor="let col of headers" [matColumnDef]="col.key">
+      <th mat-header-cell *matHeaderCellDef [class.sticky-col]="col.sticky">{{ col.label }}</th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container *ngIf="col.key === 'status'; else normalCell">
+          <span class="status" [ngClass]="element.status">{{ element.status }}</span>
+        </ng-container>
+        <ng-template #normalCell>
+          {{ element[col.key] }}
+        </ng-template>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+  </table>
+  <mat-paginator [pageSize]="5"></mat-paginator>
