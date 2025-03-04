@@ -1,0 +1,41 @@
+<div class="login-container">
+    <div class="heading-container">
+      <h6 *ngIf="isSignup">Welcome To The</h6>
+      <h2>
+        <span class="line1">GROCERY STORE</span><br />
+        MANAGEMENT SYSTEM
+      </h2>
+      <p class="para" *ngIf="isSignup">
+        Streamline inventory, track orders, manage suppliers, and enhance store operations—all in one place.
+      </p>
+      <p>Log in to keep everything running smoothly.</p>
+    </div>
+    
+    <div class="form-container">
+      <h3>{{ isSignup ? 'CREATE AN ACCOUNT' : 'ACCOUNT SIGN IN' }}</h3>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <input type="text" formControlName="username" placeholder="Username" />
+        <div class="error" *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+          Invalid username format (min 3 characters)
+        </div>
+        
+        <input type="password" formControlName="password" placeholder="Password" />
+        <div class="error" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          Invalid password format (min 6 characters)
+        </div>
+        
+        <input *ngIf="isSignup" type="password" formControlName="confirmPassword" placeholder="Confirm Password" />
+        <div class="error" *ngIf="isSignup && loginForm.get('confirmPassword')?.touched && loginForm.value.password !== loginForm.value.confirmPassword">
+          Passwords do not match!
+        </div>
+        
+        <div class="button-container">
+          <p *ngIf="isSignup">Already have an account? <span (click)="toggleForm()" class="toggle-link">Sign In</span></p>
+          <p *ngIf="!isSignup">Don't have an account? <span (click)="toggleForm()" class="toggle-link">Sign Up</span></p>
+          <button type="submit">{{ isSignup ? 'Sign Up' : 'Sign In' }}</button>
+        </div>
+      </form>
+      <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+    </div>
+  </div>
+  
